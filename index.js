@@ -29,6 +29,7 @@ list.addEventListener('click', (event)=>{
         deleteTask(event.srcElement.parentNode.id)
     }
 })
+
 let updatestats= ()=>{
     let element = list.querySelectorAll('div')
     let checkbox = list.querySelectorAll('input[type="checkbox"]:checked')
