@@ -24,10 +24,21 @@ updatestats()
 
 list.addEventListener('click', (event)=>{
     if (event.srcElement.nodeName == 'INPUT'){
+       console.log(event.target)
+      //  event.srcElement.labels[0].childNodes[1].checked=true
+
         updatestats()
     } else if (event.srcElement.nodeName=='IMG'){
         deleteTask(event.srcElement.parentNode.id)
-    }
+    } else if (event.srcElement.nodeName=='DIV'){
+        const ele = event.srcElement
+        //console.log(event)
+        ele.classList.toggle('task-containerM')
+        const ele2 = event.target.childNodes[1].childNodes[1].checked
+        event.target.childNodes[1].childNodes[1].checked=true
+        updatestats()
+        //console.log(ele2)
+        }
 })
 
 let updatestats= ()=>{
@@ -39,4 +50,9 @@ let deleteTask = (id)=>{
     let taskToDelete= document.getElementById(id)
     list.removeChild(taskToDelete)
     updatestats()
+}
+
+let marcar = (id)=>{
+    const $miCheckbox = document.getElementById(id)
+    $miCheckbox.checked = true
 }

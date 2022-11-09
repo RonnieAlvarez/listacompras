@@ -4,6 +4,7 @@
     --veryLightOrange: #f89e8b;
     --gray:#55557b;
     --white:#fff;
+    --neutral-3: #d9cfd3;
 }
 *{
     padding: 0%;
@@ -68,6 +69,12 @@ form input[type='submit']:hover{
     font-size: 1.1em;
     font-weight: 500;
     color: var(--gray );
+}
+.task-container:hover{
+    background-color: var(--neutral-3);
+}
+.task-containerM{
+    background-color: var(--veryLightOrange);
 }
 
 .closeBtn{
