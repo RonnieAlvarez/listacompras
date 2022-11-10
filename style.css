@@ -31,6 +31,10 @@ h1{
     text-align: center;
     
 }
+#userinput{
+display: flex;
+align-items: center;
+}
 form{
     margin: 0 auto;
     width: 400px;
@@ -55,12 +59,17 @@ form input[type='text']:focus{
     outline: none;
 }
 form input[type='submit']{
+    display: flex;
+    flex-direction: column;
     font-size: 2em;
     width: 40px;
     height: 40px;
+    align-items: center;
+    justify-content: flex-end;
     border-radius: 50%;
     border-style: none;
     color: var(--blue-dark);
+    
 }
 form input[type='submit']:hover{
     background-color: var(--blue-ligth);
@@ -102,9 +111,12 @@ form input[type='submit']:hover{
     font-size: 1.3em;
     color: var(--white);
     background-color: var(--blue-osc);
-    width: 450px;
-    margin: 5px auto;
+    width: 400px;
+    text-align: center;
     border-radius: 5px;
+    align-items: center;
+    margin: 0 auto;
+    
 /*     padding: 5px; */
 }
 
