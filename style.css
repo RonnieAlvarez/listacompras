@@ -4,10 +4,10 @@
     --neutral-3: #d9cfd3;
     --purple:#17197e;
     --blue:#17197e;
-    --blue-osc:#912222;
+    --red-osc:#912222;
     --green:#818a88;
     --blue-dark:#2a73c2;
-    --blue-ligth:#e9c213;
+    --yellow-ligth:#e9c213;
 
 }
 *{
@@ -72,7 +72,7 @@ form input[type='submit']{
     
 }
 form input[type='submit']:hover{
-    background-color: var(--blue-ligth);
+    background-color: var(--yellow-ligth);
     cursor: pointer;
     color: var(--white);
 }
@@ -94,10 +94,11 @@ form input[type='submit']:hover{
     color: var(--gray );
 }
 .task-container:hover{
-    background-color: var(--neutral-3);
+    /*  background-color: var(--neutral-3); */
+    font-weight: bold;
 }
 .task-containerM{
-    background-color: var(--blue-ligth);
+    background-color: var(--yellow-ligth);
 }
 
 .closeBtn{
@@ -110,7 +111,7 @@ form input[type='submit']:hover{
 #stats {
     font-size: 1.3em;
     color: var(--white);
-    background-color: var(--blue-osc);
+    background-color: var(--red-osc);
     width: 400px;
     text-align: center;
     border-radius: 5px;

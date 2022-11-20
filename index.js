@@ -14,16 +14,21 @@ document.addEventListener("DOMContentLoaded", () => {
     let tablaproductos = document.getElementById("list");
     tablaproductos.innerHTML = listaproductos[key].producto;
   }
+  const list = document.querySelectorAll("input[type=checkbox]");
+  for (const checkbox of list) {
+    checkbox.checked = false;
+  }
   updatestats();
 });
 userinput.addEventListener("submit", (event) => {
+  console.log('as');
   event.preventDefault();
   addTask();
 });
 let addTask = () => {
   IdCounter++;
   let newValue = input.value;
-  list.innerHTML += `<div class="task-container" id="${IdCounter}">
+  list.innerHTML += `<div class="task-container"  id="${IdCounter}">
   <label>
   <input type="checkbox">
   ${newValue}
@@ -45,10 +50,19 @@ let addTask = () => {
   updatestats();
   sincronizaStorage();
 };
+function hide(e) {
+  e.currentTarget.style.visibility = "hidden";
+  console.log(e.currentTarget);
+  // When this function is used as an event handler: this === e.currentTarget
+}
+
 list.addEventListener("click", (event) => {
   if (event.srcElement.nodeName == "INPUT") {
-    const ele = event.srcElement;
-    ele.classList.toggle("task-containerM");
+    if (event.path[0].checked == false) {
+      event.path[2].classList.remove("task-containerM");
+    } else {
+      event.path[2].classList.add("task-containerM");
+    }
     updatestats();
   } else if (event.srcElement.nodeName == "IMG") {
     deleteTask(event.srcElement.parentNode.id);
@@ -57,8 +71,12 @@ list.addEventListener("click", (event) => {
     ele.classList.toggle("task-containerM");
     if (event.target.childNodes[1].childNodes[1].checked == false) {
       event.target.childNodes[1].childNodes[1].checked = true;
+      const ele = event.srcElement;
+      ele.classList.add("task-containerM");
     } else {
       event.target.childNodes[1].childNodes[1].checked = false;
+      const ele = event.srcElement;
+      ele.classList.remove("task-containerM");
     }
     updatestats();
   }
@@ -69,7 +87,8 @@ function sincronizaStorage() {
 let updatestats = () => {
   let element = list.querySelectorAll("div");
   let checkbox = list.querySelectorAll('input[type="checkbox"]:checked');
-  stats.innerHTML = `<p>Articulos Pendientes: ${element.length} Completados: ${checkbox.length}</p>`;
+  let Pendientes = element.length - checkbox.length;
+  stats.innerHTML = `<p>Articulos: ${element.length} Completados: ${checkbox.length} Pendientes ${Pendientes}</p>`;
 };
 let deleteTask = (id) => {
   let taskToDelete = document.getElementById(id);
