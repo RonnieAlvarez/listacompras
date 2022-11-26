@@ -1,12 +1,12 @@
 :root{
-    --gray:#55557b;
+    --gray:#A7CFDF;
     --white:#fff;
     --neutral-3: #d9cfd3;
     --purple:#17197e;
-    --blue:#17197e;
+    --blue:#23538A;
     --red-osc:#912222;
     --green:#818a88;
-    --blue-dark:#2a73c2;
+    --blue-dark:#235e9d;
     --yellow-ligth:#e9c213;
 
 }
@@ -25,7 +25,7 @@ body{
     background-color: var(--blue-dark);
     background: linear-gradient(to bottom,var(--blue-dark),var(--gray)); 
 }
-h1{
+h3{
     /* margin-top: 20px; */
     color: var(--blue );
     text-align: center;
@@ -43,7 +43,7 @@ form{
 }
 form input[type='text']{
     margin: 0 auto;
-    background-color: var(--neutral-3);
+    background-color: var(--white);
     border-radius: 5px;
     padding: 0 0 0 5px; 
     color: var(--blue-dark);
@@ -59,13 +59,15 @@ form input[type='text']:focus{
     outline: none;
 }
 form input[type='submit']{
+    margin-left: 15px;
     display: flex;
     flex-direction: column;
-    font-size: 2em;
-    width: 40px;
-    height: 40px;
+    padding: 0 0 8px 0;
+    font-size: 3em;
+    width: 35px;
+    height: 35px;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     border-radius: 50%;
     border-style: none;
     color: var(--blue-dark);
@@ -76,12 +78,25 @@ form input[type='submit']:hover{
     cursor: pointer;
     color: var(--white);
 }
+form input[type="checkbox"]:checked{
+    background-color: #235e9d;
+
+}
+#dchkbx{
+    width: 20px;
+    height: 20px;
+    
+}
 
 .list-container{
     width: 400px;
     margin: 0 auto;
+    
 }
-
+label{
+    padding-top: 10px;
+    align-items: center!important;
+}
 .task-container{
     background-color: var(--white);
     display: flex;
@@ -93,7 +108,7 @@ form input[type='submit']:hover{
     padding: 6px;
     font-size: 1.1em;
     font-weight: 500;
-    color: var(--gray );
+    color: var(--blue-dark );
 }
 .task-container:hover{
     /*  background-color: var(--neutral-3); */
@@ -134,7 +149,7 @@ form input[type='submit']:hover{
     justify-content: center;
     margin-bottom:  5px;
     margin-top: 5px;
-    color: var(--gray );
+    color: var(--blue-dark );
   }
 
   footer{
@@ -158,3 +173,5 @@ footer img{
     color: var(--white);
     height: 50px;
   }
+
+
