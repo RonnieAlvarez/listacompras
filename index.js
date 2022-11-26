@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updatestats();
 });
 userinput.addEventListener("submit", (event) => {
-  console.log('as');
+  // console.log('as');
   event.preventDefault();
   addTask();
 });
@@ -30,7 +30,7 @@ let addTask = () => {
   let newValue = input.value;
   list.innerHTML += `<div class="task-container"  id="${IdCounter}">
   <label>
-  <input type="checkbox">
+  <input type="checkbox" id="dchkbx">
   ${newValue}
   </label>
   <img src="./img/delete-forever.png" class="closeBtn">
@@ -58,11 +58,7 @@ function hide(e) {
 
 list.addEventListener("click", (event) => {
   if (event.srcElement.nodeName == "INPUT") {
-    if (event.path[0].checked == false) {
-      event.path[2].classList.remove("task-containerM");
-    } else {
-      event.path[2].classList.add("task-containerM");
-    }
+    event.target.parentNode.parentNode.classList.toggle("task-containerM");
     updatestats();
   } else if (event.srcElement.nodeName == "IMG") {
     deleteTask(event.srcElement.parentNode.id);
