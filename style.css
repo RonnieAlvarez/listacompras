@@ -17,7 +17,7 @@
 }
 html{
     height: 100%;
-    width: 400px;
+    width: 350px;
     margin: 0 auto;
 }
 body{
@@ -39,7 +39,7 @@ align-items: center;
 }
 form{
     margin: 0 auto;
-    width: 400px;
+    width: 350px;
     margin: 10px auto;
     text-align: center;
 }
@@ -51,7 +51,7 @@ form input[type='text']{
     color: var(--blue-dark);
     border-style:none ;
     font-size: 1.4em;
-    width: 350px;
+    width: 300px;
 }
 form input[type='text']::placeholder{
     color: var(--blue-dark);
@@ -91,7 +91,7 @@ form input[type="checkbox"]:checked{
 }
 
 .list-container{
-    width: 400px;
+    width: 350px;
     margin: 0 auto;
     
 }
@@ -126,7 +126,7 @@ form input[type="checkbox"]:checked{
     font-size: 1.3em;
     color: var(--white);
     background-color: var(--red-osc);
-    width: 400px;
+    width: 350px;
     text-align: center;
     border-radius: 5px;
     align-items: center;
@@ -152,7 +152,7 @@ form input[type="checkbox"]:checked{
   footer{
     display: flex;
     height: 50px;
-    width: 500px;
+    width: 350px;
     color: var(--white);
     margin: 0 auto;
     justify-content: center;
