@@ -17,13 +17,15 @@
 }
 html{
     height: 100%;
-    width: 500px;
+    width: 400px;
     margin: 0 auto;
 }
 body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: var(--blue-dark);
     background: linear-gradient(to bottom,var(--blue-dark),var(--gray)); 
+    /* background-color: darkslategray; */
+
 }
 h3{
     /* margin-top: 20px; */
@@ -93,14 +95,10 @@ form input[type="checkbox"]:checked{
     margin: 0 auto;
     
 }
-label{
-    padding-top: 10px;
-    align-items: center!important;
-}
 .task-container{
     background-color: var(--white);
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 25px auto 30px;
     align-items: center;
     height: 2.5em;
     margin-bottom: 6px;
@@ -111,7 +109,6 @@ label{
     color: var(--blue-dark );
 }
 .task-container:hover{
-    /*  background-color: var(--neutral-3); */
     font-weight: bold;
 }
 .task-containerM{
@@ -119,8 +116,8 @@ label{
 }
 
 .closeBtn{
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
 }
 .closeBtn:hover{
     cursor: pointer;
@@ -173,5 +170,48 @@ footer img{
     color: var(--white);
     height: 50px;
   }
+.botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.boton {
+    display: inline;
+    background: var(--blue);
+    cursor: pointer;
+    border: none;
+    padding: 6px 32px;
+    color : #fff;
+    font-size:12px;
+    font-weight: bold;
+    position: relative;
+    border-radius: 12px ;
+}
 
+.boton::before {
+content: "";
+position: absolute;
+top: 0%;
+left: 0%;
+z-index: -1;
+width: 100%;
+height: 100%;
+background: linear-gradient(45deg,red blue deeppink,blue,red,blue,deeppink,blue);
+background-size: 800%;
+border-radius: 10px;
+filter: blur(18px);
+animation: glowing 20s linear infinite;
+}
 
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+    
+}

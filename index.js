@@ -4,42 +4,34 @@ class productos {
     this.producto = producto;
   }
 }
-let IdCounter = 0;
 const input = document.querySelector('input[type="Text"]');
-let listaproductos = [];
+let IdCounter = 0;
+let listaproductos;
+let tablaproductos;
+let list = document.querySelector("#list");
 document.addEventListener("DOMContentLoaded", () => {
-  let gettable = localStorage.getItem("listaproductos");
-  let listaproductos = gettable ? JSON.parse(gettable) : [];
-  for (const key in listaproductos) {
-    let tablaproductos = document.getElementById("list");
-    tablaproductos.innerHTML = listaproductos[key].producto;
-  }
-  const list = document.querySelectorAll("input[type=checkbox]");
-  for (const checkbox of list) {
-    checkbox.checked = false;
-  }
-  updatestats();
+  pintar();
 });
-userinput.addEventListener("submit", (event) => {
-  // console.log('as');
+let userinputhtml = document.getElementById("userinput")
+userinputhtml.addEventListener("submit", (event) => {
   event.preventDefault();
-  addTask();
+  if (input.value != "") {
+    addTask();
+  }
 });
 let addTask = () => {
   IdCounter++;
   let newValue = input.value;
-  list.innerHTML += `<div class="task-container"  id="${IdCounter}">
-  <label>
+  let lista = document.createElement("list");
+  lista.innerHTML = `<div class="task-container"  id="${IdCounter}">
   <input type="checkbox" id="dchkbx">
+  <label >
   ${newValue}
   </label>
   <img src="./img/delete-forever.png" class="closeBtn">
   </div>`;
+  list.appendChild(lista);
   let otrovalor = list.innerHTML;
-  const productoObjs = {
-    id: Date.now(),
-    producto: newValue,
-  };
   let id = Date.now();
   let producto = otrovalor;
   let productoObj = new productos(id, producto);
@@ -50,29 +42,20 @@ let addTask = () => {
   updatestats();
   sincronizaStorage();
 };
-function hide(e) {
-  e.currentTarget.style.visibility = "hidden";
-  console.log(e.currentTarget);
-  // When this function is used as an event handler: this === e.currentTarget
-}
 
 list.addEventListener("click", (event) => {
-  if (event.srcElement.nodeName == "INPUT") {
-    event.target.parentNode.parentNode.classList.toggle("task-containerM");
+  if (event.target.nodeName == "INPUT") {
+    event.target.parentNode.classList.toggle("task-containerM");
     updatestats();
-  } else if (event.srcElement.nodeName == "IMG") {
-    deleteTask(event.srcElement.parentNode.id);
-  } else if (event.srcElement.nodeName == "DIV") {
-    const ele = event.srcElement;
-    ele.classList.toggle("task-containerM");
-    if (event.target.childNodes[1].childNodes[1].checked == false) {
-      event.target.childNodes[1].childNodes[1].checked = true;
-      const ele = event.srcElement;
-      ele.classList.add("task-containerM");
+  } else if (event.target.nodeName == "IMG") {
+    deleteTask(event.target.parentNode.id);
+  } else if (event.target.parentNode.nodeName == "DIV") {
+    if (event.target.parentNode.childNodes[1].checked == false) {
+      event.target.parentNode.childNodes[1].checked=true
+      event.target.parentNode.classList.add("task-containerM");
     } else {
-      event.target.childNodes[1].childNodes[1].checked = false;
-      const ele = event.srcElement;
-      ele.classList.remove("task-containerM");
+      event.target.parentNode.childNodes[1].checked=false
+      event.target.parentNode.classList.remove("task-containerM");
     }
     updatestats();
   }
@@ -87,7 +70,43 @@ let updatestats = () => {
   stats.innerHTML = `<p>Articulos: ${element.length} Completados: ${checkbox.length} Pendientes ${Pendientes}</p>`;
 };
 let deleteTask = (id) => {
-  let taskToDelete = document.getElementById(id);
-  list.removeChild(taskToDelete);
+  if (listaproductos.length == 1) {
+    listaproductos.shift();
+    tablaproductos.innerHTML = ""
+  } else if (listaproductos.length > 1) {
+    listaproductos.splice(id - 1, 1);
+  }
+  sincronizaStorage();
+  pintar();
   updatestats();
 };
+
+function removetodo() {
+  let element = document.getElementById("list");
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+  listaproductos=[]
+  sincronizaStorage()
+  updatestats();
+}
+
+function pintar() {
+  let gettable = localStorage.getItem("listaproductos");
+  listaproductos = gettable ? JSON.parse(gettable) : [];
+  for (const key in listaproductos) {
+    tablaproductos = document.getElementById("list");
+    tablaproductos.innerHTML = listaproductos[key].producto;
+  }
+  updatestats();
+}
+
+function desmarcarchkbox(){
+  const listaux = document.querySelectorAll("input[type=checkbox]");
+  for (const checkbox of listaux) {
+    checkbox.checked = false;
+    checkbox.parentNode.remove("task-containerM");
+  }
+  pintar()
+  updatestats()
+}
