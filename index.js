@@ -44,19 +44,25 @@ let addTask = () => {
 };
 
 list.addEventListener("click", (event) => {
-  if (event.target.nodeName == "INPUT") {
-    event.target.parentNode.classList.toggle("task-containerM");
-    updatestats();
+  event.stopPropagation();
+  console.log(event.target.className)
+  if (event.target.nodeName == "INPUT" && event.target.className !=='list-container') {
+       event.target.parentNode.classList.toggle("task-containerM");
+       updatestats();
   } else if (event.target.nodeName == "IMG") {
     deleteTask(event.target.parentNode.id);
-  } else if (event.target.parentNode.nodeName == "DIV") {
+  } else if (event.target.parentNode.nodeName == "DIV"  && event.target.className !=='list-container') {
     if (event.target.parentNode.childNodes[1].checked == false) {
       event.target.parentNode.childNodes[1].checked=true
+      
       event.target.parentNode.classList.add("task-containerM");
     } else {
       event.target.parentNode.childNodes[1].checked=false
       event.target.parentNode.classList.remove("task-containerM");
     }
+    updatestats();
+  } else if (event.target.className =='task-container'){
+    event.target.parentNode.classList.toggle("task-containerM");
     updatestats();
   }
 });
@@ -67,7 +73,7 @@ let updatestats = () => {
   let element = list.querySelectorAll("div");
   let checkbox = list.querySelectorAll('input[type="checkbox"]:checked');
   let Pendientes = element.length - checkbox.length;
-  stats.innerHTML = `<p>Articulos: ${element.length} Completados: ${checkbox.length} Pendientes ${Pendientes}</p>`;
+  stats.innerHTML = `<p>Cant: ${element.length} Marc: ${checkbox.length} Pend: ${Pendientes}</p>`;
 };
 let deleteTask = (id) => {
   if (listaproductos.length == 1) {
